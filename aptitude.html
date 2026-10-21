@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aptitude Practice</title>
+
+    <link rel="stylesheet" th:href="@{/css/aptitude.css}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+        CareerConnect
+    </div>
+
+    <a th:href="@{/dashboard}" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i>
+        Dashboard
+    </a>
+
+</header>
+
+
+<section class="page-heading">
+
+    <div class="heading-icon">
+        <i class="fa-solid fa-brain"></i>
+    </div>
+
+    <h1>Aptitude Practice</h1>
+
+    <p>
+        Practice placement questions with AI-generated tests and mock exams.
+    </p>
+
+</section>
+
+
+<main class="category-container">
+
+
+    <!-- AI Aptitude Generator -->
+
+    <a th:href="@{/aptitude/ai}"
+       class="category-card ai">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+
+        <h2>AI Aptitude Generator</h2>
+
+        <p>
+            Generate fresh aptitude questions using AI.
+            Select the topic, difficulty level and number of questions.
+        </p>
+
+        <span>
+            Generate AI Questions
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+
+    <!-- Aptitude Mock Test -->
+
+    <a th:href="@{/aptitude/mock-test}"
+       class="category-card mock-test">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-clipboard-check"></i>
+        </div>
+
+        <h2>Aptitude Mock Test</h2>
+
+        <p>
+            Attempt a complete placement aptitude test with
+            quantitative, logical, verbal and data interpretation questions.
+        </p>
+
+        <div class="test-details">
+
+            <span>
+                <i class="fa-solid fa-circle-question"></i>
+                20 Questions
+            </span>
+
+            <span>
+                <i class="fa-solid fa-clock"></i>
+                20 Minutes
+            </span>
+
+        </div>
+
+        <span class="start-link">
+            Start Mock Test
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+
+</main>
+
+</body>
+
+</html>

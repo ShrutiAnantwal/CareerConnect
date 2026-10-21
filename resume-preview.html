@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Preview - CareerConnect</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #eef1f5;
+            font-family: Arial, sans-serif;
+            color: #222;
+        }
+
+        .topbar {
+            background: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+        }
+
+        .logo {
+            color: #2563eb;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .page {
+            width: 95%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        .heading {
+            margin-bottom: 20px;
+        }
+
+        .heading h1 {
+            margin-bottom: 5px;
+        }
+
+        .heading p {
+            color: #666;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 330px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .resume {
+            background: white;
+            padding: 45px;
+            min-height: 1100px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .12);
+        }
+
+        .resume-header {
+            text-align: center;
+            border-bottom: 2px solid #222;
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+        }
+
+        .resume-header h2 {
+            margin: 0;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+
+        .resume-header .title {
+            margin-top: 7px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .contact {
+            margin-top: 10px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .section {
+            margin-top: 22px;
+        }
+
+        .section h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 5px 0;
+        }
+
+        .project-name {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .skills {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ATS */
+
+        .ats-panel {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .10);
+            position: sticky;
+            top: 20px;
+        }
+
+        .ats-panel h2 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+
+        .score {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .score-number {
+            font-size: 45px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .score-text {
+            color: #666;
+        }
+
+        .analysis-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .good {
+            color: #15803d;
+            font-weight: bold;
+        }
+
+        .warning {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        .missing {
+            margin-top: 15px;
+        }
+
+        .missing span {
+            display: inline-block;
+            background: #fff7ed;
+            color: #c2410c;
+            padding: 6px 9px;
+            margin: 4px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        .suggestions {
+            margin-top: 20px;
+        }
+
+        .suggestions li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .download {
+            background: #2563eb;
+            color: white;
+        }
+
+        .edit {
+            background: #e5e7eb;
+            color: #222;
+        }
+
+        .edit:hover {
+            background: #d1d5db;
+        }
+
+        .download:hover {
+            background: #1d4ed8;
+        }
+
+        @media(max-width: 850px) {
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .ats-panel {
+                position: static;
+            }
+
+            .resume {
+                padding: 25px;
+            }
+        }
+
+        @media print {
+
+            body {
+                background: white;
+            }
+
+            .topbar,
+            .heading,
+            .ats-panel {
+                display: none;
+            }
+
+            .page {
+                width: 100%;
+                margin: 0;
+            }
+
+            .resume {
+                box-shadow: none;
+                padding: 35px;
+            }
+
+            .layout {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        🎓 CareerConnect
+    </div>
+
+    <a href="/resume-builder" class="back">
+        ← Edit Resume
+    </a>
+
+</header>
+
+
+<div class="page">
+
+    <div class="heading">
+
+        <h1>Resume Preview</h1>
+
+        <p>
+            Your ATS-friendly resume and compatibility analysis.
+        </p>
+
+    </div>
+
+
+    <div class="layout">
+
+
+        <!-- RESUME -->
+
+        <div class="resume" id="resume">
+
+            <div class="resume-header">
+
+                <h2 id="previewName">
+                    YOUR NAME
+                </h2>
+
+                <div class="title">
+                    Software Developer | Java | Spring Boot
+                </div>
+
+                <div class="contact">
+
+                    <span id="previewEmail">
+                        email@gmail.com
+                    </span>
+
+                    &nbsp; | &nbsp;
+
+                    <span id="previewMobile">
+                        +91 XXXXX XXXXX
+                    </span>
+
+                    &nbsp; | &nbsp;
+
+                    <span id="previewLocation">
+                        Pune, Maharashtra
+                    </span>
+
+                    <br>
+
+                    <span id="previewLinkedin">
+                        LinkedIn
+                    </span>
+
+                    &nbsp; | &nbsp;
+
+                    <span id="previewGithub">
+                        GitHub
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="section">
+
+                <h3>Professional Summary</h3>
+
+                <p id="previewSummary">
+                    Professional summary will appear here.
+                </p>
+
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <div class="section">
+
+                <h3>Education</h3>
+
+                <p>
+                    <strong id="previewDegree">
+                        B.Tech Information Technology
+                    </strong>
+                </p>
+
+                <p id="previewCollege">
+                    College / University
+                </p>
+
+                <p>
+                    CGPA:
+                    <span id="previewCgpa">
+                        -
+                    </span>
+
+                    &nbsp; | &nbsp;
+
+                    Graduation Year:
+                    <span id="previewGraduationYear">
+                        -
+                    </span>
+                </p>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div class="section">
+
+                <h3>Technical Skills</h3>
+
+                <p class="skills" id="previewSkills">
+                    Skills will appear here.
+                </p>
+
+            </div>
+
+
+            <!-- PROJECTS -->
+
+            <div class="section">
+
+                <h3>Projects</h3>
+
+                <p class="project-name" id="previewProject1Name">
+                    Project 1
+                </p>
+
+                <p id="previewProject1Description">
+                    Project description.
+                </p>
+
+
+                <p class="project-name" id="previewProject2Name">
+                    Project 2
+                </p>
+
+                <p id="previewProject2Description">
+                    Project description.
+                </p>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="section">
+
+                <h3>Experience</h3>
+
+                <p>
+
+                    <strong id="previewRole">
+                        Job Role
+                    </strong>
+
+                    -
+
+                    <span id="previewCompany">
+                        Company
+                    </span>
+
+                </p>
+
+                <p id="previewExperience">
+                    Experience description.
+                </p>
+
+            </div>
+
+
+            <!-- CERTIFICATIONS -->
+
+            <div class="section">
+
+                <h3>Certifications</h3>
+
+                <p id="previewCertifications">
+                    Certifications will appear here.
+                </p>
+
+            </div>
+
+
+            <!-- ACHIEVEMENTS -->
+
+            <div class="section">
+
+                <h3>Achievements</h3>
+
+                <p id="previewAchievements">
+                    Achievements will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ATS PANEL -->
+
+        <div class="ats-panel">
+
+            <h2>🎯 ATS Analysis</h2>
+
+            <div class="score">
+
+                <div class="score-number">
+                    0/100
+                </div>
+
+                <div class="score-text">
+                    ATS Compatibility Score
+                </div>
+
+            </div>
+
+
+            <div class="analysis-item">
+
+                <span class="good">
+                    ✓ Contact Information
+                </span>
+
+            </div>
+
+            <div class="analysis-item">
+
+                <span class="good">
+                    ✓ Resume Structure
+                </span>
+
+            </div>
+
+            <div class="analysis-item">
+
+                <span class="good">
+                    ✓ Education
+                </span>
+
+            </div>
+
+            <div class="analysis-item">
+
+                <span class="good">
+                    ✓ Skills Section
+                </span>
+
+            </div>
+
+            <div class="analysis-item">
+
+                <span class="warning">
+                    ⚠ Job Keyword Match
+                </span>
+
+            </div>
+
+
+            <div class="missing">
+
+                <strong>Missing Keywords</strong>
+
+                <br>
+
+                <span>Waiting for analysis</span>
+
+            </div>
+
+
+            <div class="suggestions">
+
+                <strong>💡 Suggestions</strong>
+
+                <ul>
+
+                    <li>
+                        Add relevant keywords from the job description.
+                    </li>
+
+                    <li>
+                        Use measurable achievements in projects.
+                    </li>
+
+                    <li>
+                        Keep the resume concise and ATS-friendly.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <button
+                    class="btn download"
+                    onclick="window.print()">
+
+                📄 Download / Save as PDF
+
+            </button>
+
+
+            <a
+                    href="/resume-builder"
+                    style="text-decoration:none;">
+
+                <button class="btn edit" type="button">
+
+                    ✏️ Edit Resume
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const storedData = sessionStorage.getItem("resumeData");
+
+        if (!storedData) {
+
+            alert("No resume data found. Please fill the Resume Builder first.");
+
+            window.location.href = "/resume-builder";
+
+            return;
+        }
+
+        const data = JSON.parse(storedData);
+
+
+        // PERSONAL INFORMATION
+
+        setText("previewName", data.fullName);
+        setText("previewEmail", data.email);
+        setText("previewMobile", data.mobile);
+        setText("previewLocation", data.location);
+        setText("previewLinkedin", data.linkedin);
+        setText("previewGithub", data.github);
+
+
+        // SUMMARY
+
+        setText("previewSummary", data.summary);
+
+
+        // EDUCATION
+
+        setText("previewDegree", data.degree);
+        setText("previewCollege", data.college);
+        setText("previewCgpa", data.cgpa);
+        setText("previewGraduationYear", data.graduationYear);
+
+
+        // SKILLS
+
+        setText("previewSkills", data.skills);
+
+
+        // PROJECTS
+
+        setText("previewProject1Name", data.project1Name);
+        setText(
+            "previewProject1Description",
+            data.project1Description
+        );
+
+        setText("previewProject2Name", data.project2Name);
+        setText(
+            "previewProject2Description",
+            data.project2Description
+        );
+
+
+        // EXPERIENCE
+
+        setText("previewRole", data.role);
+        setText("previewCompany", data.company);
+        setText("previewExperience", data.experience);
+
+
+        // CERTIFICATIONS
+
+        setText(
+            "previewCertifications",
+            data.certifications
+        );
+
+
+        // ACHIEVEMENTS
+
+        setText(
+            "previewAchievements",
+            data.achievements
+        );
+
+    });
+
+
+    function setText(id, value) {
+
+        const element = document.getElementById(id);
+
+        if (element && value && value.trim() !== "") {
+
+            element.textContent = value;
+
+        }
+
+    }
+
+</script>
+
+</body>
+
+</html>

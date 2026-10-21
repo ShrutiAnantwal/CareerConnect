@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Aptitude Test</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/ai-questions.css}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <h2>CareerConnect</h2>
+
+    <a th:href="@{/aptitude/ai}">
+        Generate Again
+    </a>
+
+</header>
+
+<main class="container">
+
+    <h1>
+        <span th:text="${topic}">Topic</span>
+        Aptitude Test
+    </h1>
+
+    <div class="test-info">
+        <span>
+            Difficulty:
+            <strong th:text="${difficulty}"></strong>
+        </span>
+
+        <span>
+            Total Questions:
+            <strong th:text="${#lists.size(questions)}"></strong>
+        </span>
+    </div>
+
+    <form id="quizForm">
+
+        <div class="question-card"
+             th:each="q, status : ${questions}"
+             th:attr="data-answer=${q.answer},
+                      data-explanation=${q.explanation}">
+
+            <p class="question-number">
+                Question
+                <span th:text="${status.count}">1</span>
+            </p>
+
+            <h2 th:text="${q.question}">
+                Question
+            </h2>
+
+            <label class="option">
+                <input type="radio"
+                       th:name="'q' + ${status.index}"
+                       value="A">
+
+                <span>
+                    A.
+                    <span th:text="${q.optionA}"></span>
+                </span>
+            </label>
+
+            <label class="option">
+                <input type="radio"
+                       th:name="'q' + ${status.index}"
+                       value="B">
+
+                <span>
+                    B.
+                    <span th:text="${q.optionB}"></span>
+                </span>
+            </label>
+
+            <label class="option">
+                <input type="radio"
+                       th:name="'q' + ${status.index}"
+                       value="C">
+
+                <span>
+                    C.
+                    <span th:text="${q.optionC}"></span>
+                </span>
+            </label>
+
+            <label class="option">
+                <input type="radio"
+                       th:name="'q' + ${status.index}"
+                       value="D">
+
+                <span>
+                    D.
+                    <span th:text="${q.optionD}"></span>
+                </span>
+            </label>
+
+            <div class="answer-result"></div>
+
+        </div>
+
+        <button type="button"
+                class="submit-button"
+                onclick="submitTest()">
+
+            Submit Test
+
+        </button>
+
+    </form>
+
+    <section id="scoreBox"
+             class="score-box"
+             style="display:none;">
+
+        <h2>Your Result</h2>
+
+        <p>
+            Score:
+            <strong id="score"></strong>
+        </p>
+
+        <p>
+            Percentage:
+            <strong id="percentage"></strong>
+        </p>
+
+    </section>
+
+</main>
+
+<script>
+function submitTest() {
+
+    const cards =
+        document.querySelectorAll(".question-card");
+
+    let score = 0;
+
+    cards.forEach((card, index) => {
+
+        const correctAnswer =
+            card.dataset.answer.trim().toUpperCase();
+
+        const explanation =
+            card.dataset.explanation;
+
+        const selected =
+            document.querySelector(
+                `input[name="q${index}"]:checked`
+            );
+
+        const resultBox =
+            card.querySelector(".answer-result");
+
+        if (!selected) {
+            resultBox.innerHTML =
+                `<p class="wrong">
+                    Not answered. Correct answer: ${correctAnswer}
+                 </p>
+                 <p>${explanation}</p>`;
+
+            return;
+        }
+
+        if (selected.value === correctAnswer) {
+            score++;
+
+            resultBox.innerHTML =
+                `<p class="correct">
+                    Correct answer
+                 </p>
+                 <p>${explanation}</p>`;
+        } else {
+            resultBox.innerHTML =
+                `<p class="wrong">
+                    Wrong answer. Correct answer: ${correctAnswer}
+                 </p>
+                 <p>${explanation}</p>`;
+        }
+    });
+
+    const total = cards.length;
+    const percentage =
+        total === 0 ? 0 : Math.round((score / total) * 100);
+
+    document.getElementById("score").textContent =
+        `${score} / ${total}`;
+
+    document.getElementById("percentage").textContent =
+        `${percentage}%`;
+
+    document.getElementById("scoreBox").style.display =
+        "block";
+
+    document.getElementById("scoreBox")
+        .scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quantitative Questions</title>
+
+    <link rel="stylesheet" th:href="@{/css/quantitative-questions.css}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <h2>CareerConnect</h2>
+
+    <a th:href="@{/aptitude/quantitative}">
+        Back
+    </a>
+
+</header>
+
+<main class="container">
+
+    <h1>
+        <span th:text="${topic}">Quantitative</span>
+        Questions
+    </h1>
+
+    <div class="empty-message"
+         th:if="${questions == null or #lists.isEmpty(questions)}">
+
+        <h2>No questions found</h2>
+
+        <p>
+            No questions are available for
+            <strong th:text="${topic}">this topic</strong>.
+        </p>
+
+    </div>
+
+    <form th:if="${questions != null and !#lists.isEmpty(questions)}">
+
+        <div class="question-card"
+             th:each="q, status : ${questions}">
+
+            <p class="question-number">
+                Question
+                <span th:text="${status.count}">1</span>
+            </p>
+
+            <h2 th:text="${q.question}">
+                Question text
+            </h2>
+
+            <label>
+                <input type="radio"
+                       th:name="'q' + ${status.index}"
+                       value="A">
+
+                <span th:text="${q.optionA}">
+                    Option A
+                </span>
+            </label>
+
+            <label>
+                <input type="radio"
+                       th:name="'q' + ${status.index}"
+                       value="B">
+
+                <span th:text="${q.optionB}">
+                    Option B
+                </span>
+            </label>
+
+            <label>
+                <input type="radio"
+                       th:name="'q' + ${status.index}"
+                       value="C">
+
+                <span th:text="${q.optionC}">
+                    Option C
+                </span>
+            </label>
+
+            <label>
+                <input type="radio"
+                       th:name="'q' + ${status.index}"
+                       value="D">
+
+                <span th:text="${q.optionD}">
+                    Option D
+                </span>
+            </label>
+
+        </div>
+
+    </form>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mock Test Result</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .result-card{
+
+            width:450px;
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 5px 20px rgba(0,0,0,.2);
+
+        }
+
+        h1{
+            color:#2563eb;
+            margin-bottom:25px;
+        }
+
+        h2{
+            margin:20px 0;
+            color:#111827;
+        }
+
+        p{
+            font-size:20px;
+            margin:10px 0;
+        }
+
+        .score{
+
+            font-size:50px;
+            color:#2563eb;
+            font-weight:bold;
+            margin:20px 0;
+
+        }
+
+        .btn{
+
+            display:inline-block;
+            margin-top:30px;
+            padding:14px 25px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+            font-size:18px;
+
+        }
+
+        .btn:hover{
+
+            background:#1d4ed8;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="result-card">
+
+    <h1>Mock Test Result</h1>
+
+    <p>Your Score</p>
+
+    <div class="score">
+
+        <span th:text="${score}"></span> /
+        <span th:text="${total}"></span>
+
+    </div>
+
+    <h2>
+
+        <span th:if="${score >= 3}">
+            🎉 Congratulations! You Passed.
+        </span>
+
+        <span th:unless="${score >= 3}">
+            Better Luck Next Time!
+        </span>
+
+    </h2>
+
+    <a th:href="@{/aptitude}" class="btn">
+
+        Back to Aptitude
+
+    </a>
+
+</div>
+
+</body>
+</html>

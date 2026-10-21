@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coding Practice - CareerConnect</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        .navbar {
+            background: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 35px auto;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .counter {
+            background: #2563eb;
+            color: white;
+            padding: 9px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .problem-name {
+            font-size: 25px;
+            margin-top: 0;
+        }
+
+        .details {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 18px 0;
+        }
+
+        .badge {
+            background: #eef2ff;
+            color: #3730a3;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .statement {
+            line-height: 1.7;
+            color: #444;
+            white-space: pre-line;
+        }
+
+        .editor-title {
+            margin-top: 28px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 280px;
+            background: #1e1e1e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 18px;
+            font-family: monospace;
+            font-size: 15px;
+            resize: vertical;
+            outline: none;
+        }
+
+        textarea:focus {
+            box-shadow: 0 0 0 2px #2563eb;
+        }
+
+        .buttons {
+            margin-top: 15px;
+        }
+
+        button {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-right: 8px;
+        }
+
+        .submit {
+            background: #2563eb;
+            color: white;
+        }
+
+        .submit:hover {
+            background: #1d4ed8;
+        }
+
+        .clear {
+            background: #e5e7eb;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        .nav-btn {
+            background: #111827;
+            color: white;
+        }
+
+        .nav-btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+
+        .accepted {
+            color: green;
+            font-weight: bold;
+        }
+
+        .wrong {
+            color: red;
+            font-weight: bold;
+        }
+
+        .warning {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        @media(max-width:700px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .problem-card {
+                padding: 20px;
+            }
+
+            .top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        🎓 CareerConnect
+    </div>
+
+    <a th:href="@{/dashboard}" class="back">
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<div class="container">
+
+    <div class="top">
+
+        <div>
+            <h1>💻 Coding Practice</h1>
+
+            <p>
+                Practice programming and improve your problem-solving skills.
+            </p>
+        </div>
+
+        <div class="counter">
+            Question <span id="currentNumber">1</span> / <span id="totalNumber">100</span>
+        </div>
+
+    </div>
+
+
+    <!-- QUESTIONS -->
+
+    <div id="questions">
+
+        <div
+                class="problem-card"
+                th:each="problem, stat : ${problems}"
+                th:attr="data-index=${stat.index}"
+                style="display:none;">
+
+            <h2
+                    class="problem-name"
+                    th:text="${problem.problemName}">
+                Problem Name
+            </h2>
+
+
+            <div class="details">
+
+                <span
+                        class="badge"
+                        th:if="${problem.contest != null}"
+                        th:text="'Contest: ' + ${problem.contest}">
+                </span>
+
+                <span
+                        class="badge"
+                        th:if="${problem.difficulty != null}"
+                        th:text="'Difficulty: ' + ${problem.difficulty}">
+                </span>
+
+                <span
+                        class="badge"
+                        th:if="${problem.problemTags != null}"
+                        th:text="'Tags: ' + ${problem.problemTags}">
+                </span>
+
+            </div>
+
+
+            <h3>Problem Statement</h3>
+
+            <p
+                    class="statement"
+                    th:text="${problem.problemStatement}">
+            </p>
+
+
+            <h3 class="editor-title">
+                Your Solution
+            </h3>
+
+            <textarea
+                    class="codeEditor"
+                    placeholder="Write your Java code here..."></textarea>
+
+
+            <div class="buttons">
+
+                <button
+                        type="button"
+                        class="submit"
+                        onclick="submitCode(this)">
+                    ▶ Submit Code
+                </button>
+
+                <button
+                        type="button"
+                        class="clear"
+                        onclick="clearCode(this)">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <div class="result">
+
+                <strong>Result</strong>
+
+                <p>
+                    Submit your solution to see the result.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="navigation">
+
+        <button
+                id="previousBtn"
+                class="nav-btn"
+                onclick="previousQuestion()">
+            ← Previous
+        </button>
+
+        <button
+                id="nextBtn"
+                class="nav-btn"
+                onclick="nextQuestion()">
+            Next →
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let currentQuestion = 0;
+
+const questions =
+    document.querySelectorAll(".problem-card");
+
+const totalQuestions =
+    questions.length;
+
+
+document.getElementById("totalNumber").textContent =
+    totalQuestions;
+
+
+function showQuestion(index) {
+
+    if (totalQuestions === 0) {
+        return;
+    }
+
+    questions.forEach((question) => {
+        question.style.display = "none";
+    });
+
+    questions[index].style.display = "block";
+
+    currentQuestion = index;
+
+    document.getElementById("currentNumber").textContent =
+        index + 1;
+
+    document.getElementById("previousBtn").disabled =
+        index === 0;
+
+    document.getElementById("nextBtn").disabled =
+        index === totalQuestions - 1;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function nextQuestion() {
+
+    if (currentQuestion < totalQuestions - 1) {
+
+        showQuestion(currentQuestion + 1);
+
+    }
+
+}
+
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+
+        showQuestion(currentQuestion - 1);
+
+    }
+
+}
+
+
+function clearCode(button) {
+
+    const card =
+        button.closest(".problem-card");
+
+    const editor =
+        card.querySelector(".codeEditor");
+
+    const result =
+        card.querySelector(".result");
+
+    editor.value = "";
+
+    result.innerHTML = `
+        <strong>Result</strong>
+
+        <p>
+            Submit your solution to see the result.
+        </p>
+    `;
+}
+
+
+function submitCode(button) {
+
+    const card =
+        button.closest(".problem-card");
+
+    const editor =
+        card.querySelector(".codeEditor");
+
+    const result =
+        card.querySelector(".result");
+
+    const code =
+        editor.value.trim();
+
+
+    if (code === "") {
+
+        result.innerHTML = `
+            <strong>Result</strong>
+
+            <p class="warning">
+                ⚠️ Please write your code first.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    fetch("/coding/submit", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type":
+                "application/x-www-form-urlencoded"
+        },
+
+        body:
+            "code=" + encodeURIComponent(code)
+
+    })
+
+    .then(response => response.text())
+
+    .then(data => {
+
+        if (data === "ACCEPTED") {
+
+            result.innerHTML = `
+                <strong>Result</strong>
+
+                <p class="accepted">
+                    ✅ Accepted
+                </p>
+
+                <p>
+                    Your code was submitted successfully.
+                </p>
+            `;
+
+        }
+
+        else if (data === "WRONG") {
+
+            result.innerHTML = `
+                <strong>Result</strong>
+
+                <p class="wrong">
+                    ❌ Wrong Answer
+                </p>
+            `;
+
+        }
+
+        else {
+
+            result.innerHTML = `
+                <strong>Result</strong>
+
+                <p class="warning">
+                    ⚠️ Please write your code first.
+                </p>
+            `;
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        result.innerHTML = `
+            <strong>Result</strong>
+
+            <p class="wrong">
+                ❌ Server error. Please try again.
+            </p>
+        `;
+
+    });
+}
+
+
+/* SHOW FIRST QUESTION */
+
+showQuestion(0);
+
+</script>
+
+</body>
+
+</html>

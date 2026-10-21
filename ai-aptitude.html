@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Aptitude Practice</title>
+
+    <link rel="stylesheet" th:href="@{/css/ai-aptitude.css}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+        CareerConnect
+    </div>
+
+    <a th:href="@{/aptitude}" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i>
+        Aptitude
+    </a>
+
+</header>
+
+<main class="page-container">
+
+    <section class="form-card">
+
+        <div class="heading-icon">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+
+        <h1>AI Aptitude Generator</h1>
+
+        <p class="subtitle">
+            Select a topic, difficulty and number of questions.
+            Groq AI will generate fresh aptitude MCQs for you.
+        </p>
+
+        <p class="error-message"
+           th:if="${error}"
+           th:text="${error}">
+        </p>
+
+        <form th:action="@{/aptitude/ai/generate}" method="post">
+
+            <div class="form-group">
+
+                <label for="topic">
+                    <i class="fa-solid fa-book-open"></i>
+                    Select Topic
+                </label>
+
+                <select id="topic"
+                        name="topic"
+                        required>
+
+                    <option value="" disabled selected>
+                        Choose a topic
+                    </option>
+
+                    <option value="Percentage">
+                        Percentage
+                    </option>
+
+                    <option value="Average">
+                        Average
+                    </option>
+
+                    <option value="Profit and Loss">
+                        Profit &amp; Loss
+                    </option>
+
+                    <option value="Ratio and Proportion">
+                        Ratio &amp; Proportion
+                    </option>
+
+                    <option value="Time and Work">
+                        Time &amp; Work
+                    </option>
+
+                    <option value="Time Speed and Distance">
+                        Time, Speed &amp; Distance
+                    </option>
+
+                    <option value="Number System">
+                        Number System
+                    </option>
+
+                    <option value="Permutation and Combination">
+                        Permutation &amp; Combination
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="difficulty">
+                    <i class="fa-solid fa-signal"></i>
+                    Select Difficulty
+                </label>
+
+                <select id="difficulty"
+                        name="difficulty"
+                        required>
+
+                    <option value="" disabled selected>
+                        Choose difficulty
+                    </option>
+
+                    <option value="Easy">
+                        Easy
+                    </option>
+
+                    <option value="Medium">
+                        Medium
+                    </option>
+
+                    <option value="Hard">
+                        Hard
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="numberOfQuestions">
+                    <i class="fa-solid fa-list-ol"></i>
+                    Number of Questions
+                </label>
+
+                <select id="numberOfQuestions"
+                        name="numberOfQuestions"
+                        required>
+
+                    <option value="5">
+                        5 Questions
+                    </option>
+
+                    <option value="10" selected>
+                        10 Questions
+                    </option>
+
+                    <option value="20">
+                        20 Questions
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit" class="generate-button">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                Generate AI Questions
+
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>

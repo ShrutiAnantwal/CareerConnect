@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CareerConnect</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+}
+
+nav{
+background:linear-gradient(90deg,#5b21b6,#7c3aed);
+padding:18px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:white;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:bold;
+transition:0.3s;
+}
+
+nav ul li a:hover{
+color:#ddd;
+}
+
+.hero{
+width:92%;
+margin:35px auto;
+background:white;
+padding:60px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:20px;
+}
+
+.hero span{
+color:#6d28d9;
+}
+
+.hero p{
+font-size:22px;
+color:#555;
+margin-bottom:40px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 30px;
+background:#6d28d9;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-size:20px;
+margin-right:15px;
+transition:.3s;
+}
+
+.btn:hover{
+background:#5b21b6;
+}
+
+.btn2{
+display:inline-block;
+padding:14px 30px;
+background:#16a34a;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-size:20px;
+transition:.3s;
+}
+
+.btn2:hover{
+background:#15803d;
+}
+
+.cards{
+width:92%;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:50px;
+}
+
+.card{
+background:white;
+padding:35px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card i{
+font-size:45px;
+color:#6d28d9;
+margin-bottom:20px;
+}
+
+.card h2{
+margin-bottom:15px;
+color:#2d2d2d;
+}
+
+.card p{
+color:#666;
+line-height:1.7;
+}
+
+footer{
+margin-top:40px;
+background:#5b21b6;
+color:white;
+text-align:center;
+padding:18px;
+}
+
+@media(max-width:900px){
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:40px;
+}
+
+nav{
+flex-direction:column;
+gap:20px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+<i class="fa-solid fa-graduation-cap"></i>
+CareerConnect
+</div>
+
+<ul>
+
+<li><a href="/">Home</a></li>
+<li><a href="#">Jobs</a></li>
+<li><a href="#">Companies</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Login</a></li>
+<li><a href="#">Register</a></li>
+
+</ul>
+
+</nav>
+
+<div class="hero">
+
+<h1>
+Welcome to
+<span>CareerConnect</span>
+</h1>
+
+<p>
+AI-Powered Smart Placement Portal for Students, Companies and College Administration.
+</p>
+
+<a th:href="@{/login}" class="btn">
+    <i class="fa-solid fa-right-to-bracket"></i>
+    Login
+</a>
+
+<a th:href="@{/register}" class="btn2">
+    <i class="fa-solid fa-user-plus"></i>
+    Register
+</a>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+<h2>Students</h2>
+
+<p>
+Practice aptitude tests, coding challenges, upload resumes, apply for jobs and track placement progress.
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-building"></i>
+
+<h2>Companies</h2>
+
+<p>
+Post jobs, manage applicants, shortlist candidates and conduct recruitment drives easily.
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<h2>Admin</h2>
+
+<p>
+Manage students, companies, job postings, placement drives, reports and portal activities.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 CareerConnect | AI-Powered Smart Placement Portal
+
+</footer>
+
+</body>
+</html>

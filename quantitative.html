@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quantitative Aptitude</title>
+
+    <link rel="stylesheet" th:href="@{/css/quantitative.css}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+        CareerConnect
+    </div>
+
+    <a th:href="@{/aptitude}" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i>
+        Aptitude
+    </a>
+
+</header>
+
+<section class="page-heading">
+
+    <div class="heading-icon">
+        <i class="fa-solid fa-calculator"></i>
+    </div>
+
+    <h1>Quantitative Aptitude</h1>
+
+    <p>Select a topic and start practicing placement questions.</p>
+
+</section>
+
+<main class="topic-container">
+
+    <a th:href="@{/aptitude/quantitative/questions(topic='Percentage')}"
+       class="topic-card percentage">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-percent"></i>
+        </div>
+
+        <h2>Percentage</h2>
+
+        <p>Practice percentage, increase, decrease and election questions.</p>
+
+        <span>
+            Start Practice
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a th:href="@{/aptitude/quantitative/questions(topic='Average')}"
+       class="topic-card average">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-chart-simple"></i>
+        </div>
+
+        <h2>Average</h2>
+
+        <p>Practice averages based on marks, ages, speed and groups.</p>
+
+        <span>
+            Start Practice
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a th:href="@{/aptitude/quantitative/questions(topic='Profit & Loss')}"
+       class="topic-card profit">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-coins"></i>
+        </div>
+
+        <h2>Profit &amp; Loss</h2>
+
+        <p>Practice cost price, selling price, discount, profit and loss.</p>
+
+        <span>
+            Start Practice
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a th:href="@{/aptitude/quantitative/questions(topic='Ratio & Proportion')}"
+       class="topic-card ratio">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-scale-balanced"></i>
+        </div>
+
+        <h2>Ratio &amp; Proportion</h2>
+
+        <p>Practice ratio, proportion, partnership and division questions.</p>
+
+        <span>
+            Start Practice
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a th:href="@{/aptitude/quantitative/questions(topic='Time & Work')}"
+       class="topic-card work">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-person-digging"></i>
+        </div>
+
+        <h2>Time &amp; Work</h2>
+
+        <p>Practice work completion, efficiency and combined work questions.</p>
+
+        <span>
+            Start Practice
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a th:href="@{/aptitude/quantitative/questions(topic='Time, Speed & Distance')}"
+       class="topic-card speed">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-train"></i>
+        </div>
+
+        <h2>Time, Speed &amp; Distance</h2>
+
+        <p>Practice trains, boats, races, speed and distance questions.</p>
+
+        <span>
+            Start Practice
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a th:href="@{/aptitude/quantitative/questions(topic='Number System')}"
+       class="topic-card number">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-hashtag"></i>
+        </div>
+
+        <h2>Number System</h2>
+
+        <p>Practice HCF, LCM, digits, logarithms and number series.</p>
+
+        <span>
+            Start Practice
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a th:href="@{/aptitude/quantitative/questions(topic='Permutation & Combination')}"
+       class="topic-card permutation">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-shuffle"></i>
+        </div>
+
+        <h2>Permutation &amp; Combination</h2>
+
+        <p>Practice arrangements, selections and counting questions.</p>
+
+        <span>
+            Start Practice
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+    <a th:href="@{/aptitude/quantitative/questions(topic='Miscellaneous')}"
+       class="topic-card miscellaneous">
+
+        <div class="icon-box">
+            <i class="fa-solid fa-layer-group"></i>
+        </div>
+
+        <h2>Miscellaneous</h2>
+
+        <p>Practice the remaining mixed quantitative aptitude questions.</p>
+
+        <span>
+            Start Practice
+            <i class="fa-solid fa-arrow-right"></i>
+        </span>
+
+    </a>
+
+</main>
+
+</body>
+</html>

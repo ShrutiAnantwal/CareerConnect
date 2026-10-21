@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aptitude Mock Test</title>
+
+    <link rel="stylesheet" th:href="@{/css/mock-test.css}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        CareerConnect
+    </div>
+
+    <a th:href="@{/aptitude}" class="back-button">
+        Back to Aptitude
+    </a>
+
+</header>
+
+<main class="test-container">
+
+    <section class="test-header">
+
+        <div>
+            <h1>Aptitude Mock Test</h1>
+            <p>Answer all 5 questions.</p>
+        </div>
+
+        <div class="timer">
+            <span id="timer">05:00</span>
+        </div>
+
+    </section>
+
+    <form id="mockTestForm"
+          th:action="@{/aptitude/mock-test/submit}"
+          method="post">
+
+        <div class="question-card">
+
+            <div class="question-number">
+                Question 1 of 5
+            </div>
+
+            <h2>What is 20% of 500?</h2>
+
+            <label class="option">
+                <input type="radio" name="q1" value="A" required>
+                A. 50
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="B">
+                B. 100
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="C">
+                C. 150
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q1" value="D">
+                D. 200
+            </label>
+
+        </div>
+
+        <div class="question-card">
+
+            <div class="question-number">
+                Question 2 of 5
+            </div>
+
+            <h2>Find the next number: 2, 4, 8, 16, ?</h2>
+
+            <label class="option">
+                <input type="radio" name="q2" value="A" required>
+                A. 18
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="B">
+                B. 24
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="C">
+                C. 32
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q2" value="D">
+                D. 36
+            </label>
+
+        </div>
+
+        <div class="question-card">
+
+            <div class="question-number">
+                Question 3 of 5
+            </div>
+
+            <h2>Choose the synonym of Rapid.</h2>
+
+            <label class="option">
+                <input type="radio" name="q3" value="A" required>
+                A. Slow
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q3" value="B">
+                B. Fast
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q3" value="C">
+                C. Weak
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q3" value="D">
+                D. Quiet
+            </label>
+
+        </div>
+
+        <div class="question-card">
+
+            <div class="question-number">
+                Question 4 of 5
+            </div>
+
+            <h2>What is the average of 10, 20 and 30?</h2>
+
+            <label class="option">
+                <input type="radio" name="q4" value="A" required>
+                A. 10
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q4" value="B">
+                B. 15
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q4" value="C">
+                C. 20
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q4" value="D">
+                D. 25
+            </label>
+
+        </div>
+
+        <div class="question-card">
+
+            <div class="question-number">
+                Question 5 of 5
+            </div>
+
+            <h2>If SOUTH is written as HTUOS, how is NORTH written?</h2>
+
+            <label class="option">
+                <input type="radio" name="q5" value="A" required>
+                A. HTRON
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q5" value="B">
+                B. NROTH
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q5" value="C">
+                C. TROHN
+            </label>
+
+            <label class="option">
+                <input type="radio" name="q5" value="D">
+                D. HNORT
+            </label>
+
+        </div>
+
+        <button type="submit" class="submit-button">
+            Submit Test
+        </button>
+
+    </form>
+
+</main>
+
+<script>
+    let timeLeft = 300;
+
+    const timerElement = document.getElementById("timer");
+    const testForm = document.getElementById("mockTestForm");
+
+    const countdown = setInterval(function () {
+
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+
+        timerElement.textContent =
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(seconds).padStart(2, "0");
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            alert("Time is over. Your test will be submitted.");
+            testForm.submit();
+        }
+
+        timeLeft--;
+
+    }, 1000);
+</script>
+
+</body>
+</html>

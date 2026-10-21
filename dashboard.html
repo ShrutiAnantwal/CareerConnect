@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        🎓 CareerConnect
+    </div>
+
+    <a class="logout-btn" th:href="@{/login}">
+        Logout
+    </a>
+
+</header>
+
+<main class="dashboard-container">
+
+    <h1>Welcome Student 🎉</h1>
+
+    <p class="subtitle">
+        Start your placement preparation journey
+    </p>
+
+    <div class="dashboard-grid">
+
+        <!-- Aptitude Practice -->
+        <a th:href="@{/aptitude}" class="dashboard-card">
+
+            <i class="fa-solid fa-brain"></i>
+
+            <h2>Aptitude Practice</h2>
+
+            <p>
+                Practice quantitative and logical questions.
+            </p>
+
+        </a>
+
+
+        <!-- Coding Practice -->
+        <a th:href="@{/coding}" class="dashboard-card">
+
+            <i class="fa-solid fa-code"></i>
+
+            <h2>Coding Practice</h2>
+
+            <p>
+                Improve technical coding skills.
+            </p>
+
+        </a>
+
+
+        <!-- Resume Builder -->
+        <a th:href="@{/resume-builder}" class="dashboard-card">
+
+            <i class="fa-solid fa-file"></i>
+
+            <h2>Resume Builder</h2>
+
+            <p>
+                Create professional resumes.
+            </p>
+
+        </a>
+
+
+        <!-- Interview Preparation -->
+        <a href="#" class="dashboard-card">
+
+            <i class="fa-solid fa-user-tie"></i>
+
+            <h2>Interview Prep</h2>
+
+            <p>
+                Prepare HR and technical interviews.
+            </p>
+
+        </a>
+
+
+        <!-- Performance -->
+        <a th:href="@{/coding}" class="dashboard-card">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <h2>Performance</h2>
+
+            <p>
+                Track your preparation progress.
+            </p>
+
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+</html>
